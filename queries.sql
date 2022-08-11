@@ -11,22 +11,18 @@ SELECT * from animal WHERE weight_kg BETWEEN 10.4 AND 17.3;
 
 
 BEGIN;
-UPDATE animal
-SET species = 'unspecified';
+UPDATE animal SET species = 'unspecified';
 SELECT * from animal;
 ROLLBACK;
 SELECT * from animal;
 
 BEGIN;
-UPDATE animal SET species = 'digimon'
-WHERE name like '%mon';
-UPDATE animal SET species = 'pokemon'
-WHERE species IS NULL;
+UPDATE animal SET species = 'digimon' WHERE name like '%mon';
+UPDATE animal  SET species='pokemon' WHERE species = 'unspecified';
 COMMIT;
 
 BEGIN;
-DELETE FROM animal
-WHERE data_of_birth > 'January 1, 2022';
+DELETE FROM animal WHERE data_of_birth > 'January 1, 2022';
 SAVEPOINT SP1;
 UPDATE animal SET weight_kg = (weight_kg * -1);
 ROLLBACK TO SP1;

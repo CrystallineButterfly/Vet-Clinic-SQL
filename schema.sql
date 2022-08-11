@@ -11,5 +11,7 @@ CREATE TABLE animal (
     CONSTRAINT animals_pkey PRIMARY KEY (id)
 );
 
+Alter TABLE animal ADD species char(20);
+
 
 
