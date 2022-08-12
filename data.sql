@@ -57,30 +57,54 @@ VALUES
 ((SELECT id FROM vets WHERE vets.name = 'Jack Harkness'), (SELECT id FROM species WHERE species.name = 'Digimon'));
 
 
-INSERT INTO visits (animal_id, vet_id, visit_date)
-VALUES
-((SELECT id FROM animal WHERE animal.name = 'Agumon'), (SELECT id FROM vets WHERE vets.name = 'William Tatcher'), '2020-05-24'),
-((SELECT id FROM animal WHERE animal.name = 'Agumon'), (SELECT id FROM vets WHERE vets.name = 'Stephanie Mendez'), '2020-07-22'),
-((SELECT id FROM animal WHERE animal.name = 'Gabumon'), (SELECT id FROM vets WHERE vets.name = 'Jack Harkness'), '2021-02-02'),
-((SELECT id FROM animal WHERE animal.name = 'Pikachu'), (SELECT id FROM vets WHERE vets.name = 'Maisy Smith'), '2020-01-05'),
-((SELECT id FROM animal WHERE animal.name = 'Pikachu'), (SELECT id FROM vets WHERE vets.name = 'Maisy Smith'), '2020-03-08'),
-((SELECT id FROM animal WHERE animal.name = 'Pikachu'), (SELECT id FROM vets WHERE vets.name = 'Maisy Smith'), '2020-05-14'),
-((SELECT id FROM animal WHERE animal.name = 'Devimon'), (SELECT id FROM vets WHERE vets.name = 'Stephanie Mendez'), '2021-05-04'),
-((SELECT id FROM animal WHERE animal.name = 'Charmander'), (SELECT id FROM vets WHERE vets.name = 'Jack Harkness'), '2021-02-24'),
-((SELECT id FROM animal WHERE animal.name = 'Plantmon'), (SELECT id FROM vets WHERE vets.name = 'Maisy Smith'), '2019-12-21'),
-((SELECT id FROM animal WHERE animal.name = 'Plantmon'), (SELECT id FROM vets WHERE vets.name = 'William Tatcher'), '2020-08-10'),
-((SELECT id FROM animal WHERE animal.name = 'Plantmon'), (SELECT id FROM vets WHERE vets.name = 'Maisy Smith'), '2021-04-07'),
-((SELECT id FROM animal WHERE animal.name = 'Squirtle'), (SELECT id FROM vets WHERE vets.name = 'Stephanie Mendez'), '2019-09-29'),
-((SELECT id FROM animal WHERE animal.name = 'Angemon'), (SELECT id FROM vets WHERE vets.name = 'Jack Harkness'), '2020-10-03'),
-((SELECT id FROM animal WHERE animal.name = 'Angemon'), (SELECT id FROM vets WHERE vets.name = 'Jack Harkness'), '2020-11-04'),
-((SELECT id FROM animal WHERE animal.name = 'Boarmon'), (SELECT id FROM vets WHERE vets.name = 'Maisy Smith'), '2019-01-24'),
-((SELECT id FROM animal WHERE animal.name = 'Boarmon'), (SELECT id FROM vets WHERE vets.name = 'Maisy Smith'), '2019-05-15'),
-((SELECT id FROM animal WHERE animal.name = 'Boarmon'), (SELECT id FROM vets WHERE vets.name = 'Maisy Smith'), '2020-02-27'),
-((SELECT id FROM animal WHERE animal.name = 'Boarmon'), (SELECT id FROM vets WHERE vets.name = 'Maisy Smith'), '2020-08-03'),
-((SELECT id FROM animal WHERE animal.name = 'Blossom'), (SELECT id FROM vets WHERE vets.name = 'Stephanie Mendez'), '2020-05-24'),
-((SELECT id FROM animal WHERE animal.name = 'Blossom'), (SELECT id FROM vets WHERE vets.name = 'William Tatcher'), '2021-01-11');
+-- INSERT INTO visits (animal_id, vet_id, visit_date)
+-- VALUES
+-- ((SELECT id FROM animal WHERE animal.name = 'Agumon'), (SELECT id FROM vets WHERE vets.name = 'William Tatcher'), '2020-05-24'),
+-- ((SELECT id FROM animal WHERE animal.name = 'Agumon'), (SELECT id FROM vets WHERE vets.name = 'Stephanie Mendez'), '2020-07-22'),
+-- ((SELECT id FROM animal WHERE animal.name = 'Gabumon'), (SELECT id FROM vets WHERE vets.name = 'Jack Harkness'), '2021-02-02'),
+-- ((SELECT id FROM animal WHERE animal.name = 'Pikachu'), (SELECT id FROM vets WHERE vets.name = 'Maisy Smith'), '2020-01-05'),
+-- ((SELECT id FROM animal WHERE animal.name = 'Pikachu'), (SELECT id FROM vets WHERE vets.name = 'Maisy Smith'), '2020-03-08'),
+-- ((SELECT id FROM animal WHERE animal.name = 'Pikachu'), (SELECT id FROM vets WHERE vets.name = 'Maisy Smith'), '2020-05-14'),
+-- ((SELECT id FROM animal WHERE animal.name = 'Devimon'), (SELECT id FROM vets WHERE vets.name = 'Stephanie Mendez'), '2021-05-04'),
+-- ((SELECT id FROM animal WHERE animal.name = 'Charmander'), (SELECT id FROM vets WHERE vets.name = 'Jack Harkness'), '2021-02-24'),
+-- ((SELECT id FROM animal WHERE animal.name = 'Plantmon'), (SELECT id FROM vets WHERE vets.name = 'Maisy Smith'), '2019-12-21'),
+-- ((SELECT id FROM animal WHERE animal.name = 'Plantmon'), (SELECT id FROM vets WHERE vets.name = 'William Tatcher'), '2020-08-10'),
+-- ((SELECT id FROM animal WHERE animal.name = 'Plantmon'), (SELECT id FROM vets WHERE vets.name = 'Maisy Smith'), '2021-04-07'),
+-- ((SELECT id FROM animal WHERE animal.name = 'Squirtle'), (SELECT id FROM vets WHERE vets.name = 'Stephanie Mendez'), '2019-09-29'),
+-- ((SELECT id FROM animal WHERE animal.name = 'Angemon'), (SELECT id FROM vets WHERE vets.name = 'Jack Harkness'), '2020-10-03'),
+-- ((SELECT id FROM animal WHERE animal.name = 'Angemon'), (SELECT id FROM vets WHERE vets.name = 'Jack Harkness'), '2020-11-04'),
+-- ((SELECT id FROM animal WHERE animal.name = 'Boarmon'), (SELECT id FROM vets WHERE vets.name = 'Maisy Smith'), '2019-01-24'),
+-- ((SELECT id FROM animal WHERE animal.name = 'Boarmon'), (SELECT id FROM vets WHERE vets.name = 'Maisy Smith'), '2019-05-15'),
+-- ((SELECT id FROM animal WHERE animal.name = 'Boarmon'), (SELECT id FROM vets WHERE vets.name = 'Maisy Smith'), '2020-02-27'),
+-- ((SELECT id FROM animal WHERE animal.name = 'Boarmon'), (SELECT id FROM vets WHERE vets.name = 'Maisy Smith'), '2020-08-03'),
+-- ((SELECT id FROM animal WHERE animal.name = 'Blossom'), (SELECT id FROM vets WHERE vets.name = 'Stephanie Mendez'), '2020-05-24'),
+-- ((SELECT id FROM animal WHERE animal.name = 'Blossom'), (SELECT id FROM vets WHERE vets.name = 'William Tatcher'), '2021-01-11');
 
-INSERT INTO visits (animal_id, vet_id, visit_date) SELECT * FROM (SELECT id FROM animals) animal_ids, (SELECT id FROM vets) vet_id, generate_series('1980-01-01'::timestamp, '2021-01-01', '4 hours') visit_timestamp;
+INSERT INTO
+    visits(animal_id, vet_id, visit_date)
+VALUES
+    (5, 1, 'May 24 2020'),
+    (5, 3, 'Jul 22 2020'),
+    (2, 4, 'Feb 02 2021'),
+    (1, 2, 'Jan 05 2020'),
+    (1, 2, 'Mar 08 2020'),
+    (1, 2, 'May 14 2020'),
+    (3, 3, 'May 04 2021'),
+    (4, 4, 'Feb 24 2021'),
+    (6, 2, 'Dec 21 2019'),
+    (6, 1, 'Aug 10 2020'),
+    (6, 2, 'Apr 07 2021'),
+    (7, 3, 'Sep 29 2019'),
+    (5, 4, 'Oct 03 2020'),
+    (5, 4, 'Nov 04 2020'),
+    (10, 2, 'Jan 24 2019'),
+    (10, 2, 'May 15 2019'),
+    (10, 2, 'Feb 27 2020'),
+    (10, 2, 'Aug 03 2020'),
+    (8, 3, 'May 24 2020'),
+    (8, 1, 'Jan 01 2021');
+
+INSERT INTO visits (animal_id, vet_id, visit_date) SELECT * FROM (SELECT id FROM animal) animal_ids, (SELECT id FROM vets) vet_id, generate_series('1980-01-01'::timestamp, '2021-01-01', '4 hours') visit_timestamp;
 
 insert into owners (full_name, email) select 'Owner ' || generate_series(1,2500000), 'owner_' || generate_series(1,2500000) || '@mail.com';
 

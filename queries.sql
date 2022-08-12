@@ -80,7 +80,7 @@ ORDER BY visits.visit_date DESC
 LIMIT 1;
 
 SELECT COUNT(animal.name) FROM visits
-JOIN animal ON animals.id = visits.animal_id
+JOIN animal ON animal.id = visits.animal_id
 JOIN vets ON vets.id = visits.vet_id
 WHERE vets.name = 'Stephanie Mendez';
 
@@ -95,21 +95,21 @@ WHERE vets.name = 'Stephanie Mendez'
 AND visits.visit_date BETWEEN '2020-04-03' AND '2020-08-30';
 
 SELECT animal.name FROM visits
-JOIN animal ON animals.id = visits.animal_id
+JOIN animal ON animal.id = visits.animal_id
 GROUP BY animal.name
 ORDER BY COUNT(visits.visit_date) DESC
 LIMIT 1;
 
 SELECT animal.name FROM visits
-JOIN animal ON animals.id = visits.animal_id
+JOIN animal ON animal.id = visits.animal_id
 JOIN vets ON vets.id = visits.vet_id
 WHERE vets.name = 'Maisy Smith'
-GROUP BY animals.name, visits.visit_date
+GROUP BY animal.name, visits.visit_date
 ORDER BY visits.visit_date ASC
 LIMIT 1;
 
 SELECT animal.name, vets.name, visits.visit_date FROM visits
-JOIN animal ON animals.id = visits.animal_id
+JOIN animal ON animal.id = visits.animal_id
 JOIN vets ON vets.id = visits.vet_id
 ORDER BY visits.visit_date DESC
 LIMIT 1;
@@ -120,22 +120,14 @@ FROM vets
 LEFT JOIN specializations ON vets.id = specializations.vet_id
 LEFT JOIN species ON species.id = specializations.species_id;
 
-SELECT COUNT (visits.visit_date) FROM animal
-JOIN visits ON visits.animal_id = animals.id
-JOIN vets ON vets.id = visits.vet_id
-LEFT JOIN specializations ON vets.id = specializations.vet_id
-WHERE (animals.species_id != specializations.species_id OR specializations.species_id IS NULL)
-AND 2 != (
-  SELECT COUNT(Specialty.name)
-  FROM Specialty
-  WHERE Specialty.name = vets.name
-);
+
+
 
 SELECT species.name, COUNT(species.name) as visits
-FROM animals
-JOIN visits ON visits.animal_id = animals.id
+FROM animal
+JOIN visits ON visits.animal_id = animal.id
 JOIN vets ON visits.vet_id = vets.id
-JOIN species ON species.id = animals.species_id
+JOIN species ON species.id = animal.species_id
 WHERE vets.name = 'Maisy Smith'
 GROUP BY species.name
 ORDER BY visits DESC
