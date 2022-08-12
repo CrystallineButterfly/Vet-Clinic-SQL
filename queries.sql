@@ -45,28 +45,28 @@ JOIN species S ON A.species_id = S.id
 WHERE S.name = 'Pokemon';
 
 SELECT full_name, name
-FROM animals A
+FROM animal A
 FULL OUTER JOIN owners O on O.id = A.owner_id;
 
-SELECT S.name, COUNT(*) FROM animals A
+SELECT S.name, COUNT(*) FROM animal A
 JOIN species S ON A.species_id = S.id
 GROUP BY S.name;
 
 SELECT A.name
-FROM animals A
+FROM animal A
 JOIN owners O ON A.owner_id = O.id
 JOIN species S ON A.species_id = S.id
 WHERE O.full_name = 'Jennifer Orwell'
 AND S.name = 'Digimon';
 
 SELECT A.name
-FROM animals A
+FROM animal A
 JOIN owners O ON A.owner_id = O.id
 WHERE A.escape_attempts = 0
 AND O.full_name = 'Dean Winchester';
 
 SELECT COUNT(*) as count, full_name
-FROM animals as A
+FROM animal as A
 JOIN owners O ON A.owner_id = O.id
 GROUP BY full_name
 ORDER BY count desc;
